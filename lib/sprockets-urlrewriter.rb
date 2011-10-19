@@ -1,5 +1,4 @@
-require "sprockets-urlrewriter/version"
-
+require_relative 'sprockets-urlrewriter/version'
 require 'sprockets' 
 require 'pathname' 
 require 'uri' 
@@ -15,4 +14,4 @@ module Sprockets
       end 
     end 
   end 
-end                                                                    
+end
