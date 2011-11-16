@@ -1,10 +1,11 @@
-require_relative 'sprockets-urlrewriter/version'
 require 'sprockets' 
 require 'pathname' 
 require 'uri' 
  
 module Sprockets 
   class UrlRewriter < Processor 
+    VERSION = "0.0.2"
+
     def evaluate(context, locals) 
       rel = Pathname.new(context.logical_path).parent 
       data.gsub /url\(['"]?([^\s)]+\.[a-z]+)(\?\d+)?['"]?\)/ do |url| 
