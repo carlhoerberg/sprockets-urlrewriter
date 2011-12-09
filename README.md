@@ -1,3 +1,8 @@
+Sprockets Url Rewriter
+======================
+
+Rewrites relative CSS urls to absolute ones, which means that you can include, for example jQuery UI, without any modifications. 
+
 Example usage
 =============
 
