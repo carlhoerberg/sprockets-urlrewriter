@@ -8,7 +8,11 @@ Example usage
 
     gem install sprockets-urlrewriter
 
-In config.ru
+In rails: 
+
+    config.assets.register_preprocessor 'text/css', Sprockets::UrlRewriter
+
+In config.ru (if you're using Sinatra)
 
     map '/assets' do
       s = Sprockets::Environment.new
@@ -19,6 +23,8 @@ In config.ru
       s.cache = Sprockets::Cache::FileStore.new("tmp/sprockets")
       run s
     end
+
+
 
 License terms
 =============
