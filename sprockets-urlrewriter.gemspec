@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "sprockets-urlrewriter"
+require "sprockets-urlrewriter/version"
 
 Gem::Specification.new do |s|
   s.name        = "sprockets-urlrewriter"
-  s.version     = Sprockets::UrlRewriter::VERSION
+  s.version     = SprocketsUrlRewriter::VERSION
   s.authors     = ["Carl Hoerberg"]
   s.email       = ["carl.hoerberg@gmail.com"]
   s.homepage    = "http://github.com/carlhoerberg/sprockets-urlrewriter"
