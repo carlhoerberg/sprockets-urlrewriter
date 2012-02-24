@@ -7,9 +7,12 @@ module Sprockets
     def evaluate(context, locals) 
       rel = Pathname.new(context.logical_path).parent 
       data.gsub /url\(['"]?([^\s)]+\.[a-z]+)(\?\d+)?['"]?\)/ do |url| 
-        return url if URI.parse($1).absolute? 
-        new_path = rel.join Pathname.new($1) 
-        "url(#{new_path})" 
+        unless URI.parse($1).absolute?
+          new_path = rel.join Pathname.new($1)
+          url = "url(#{new_path})"
+        end
+
+        url
       end 
     end 
   end 
