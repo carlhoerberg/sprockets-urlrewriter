@@ -8,7 +8,7 @@ describe 'UrlRewriter' do
 
   it 'finds relatives urls and makes them absolute' do
     @css = "body { background-url: url('bg.jpg?1232') }"
-    assert_equal "body { background-url: url(/assets/css/bg.jpg) }", subject
+    assert_equal "body { background-url: url(/assets/css/bg.jpg?1232) }", subject
   end
 
   it 'leaves absolute URLs as is' do

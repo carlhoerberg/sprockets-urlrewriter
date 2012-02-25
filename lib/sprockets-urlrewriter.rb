@@ -16,7 +16,7 @@ module Sprockets
       data.gsub /url\(['"]?([^\s)]+\.[a-z]+)(\?\d+)?['"]?\)/ do |url| 
         next url if URI.parse($1).absolute?
         new_path = rel.join Pathname.new($1)
-        "url(#{new_path})"
+        "url(#{new_path}#{$2})"
       end 
     end 
   end 
