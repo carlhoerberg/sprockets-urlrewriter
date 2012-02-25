@@ -10,16 +10,13 @@ module Sprockets
       # with periods in them: https://github.com/sstephenson/sprockets/pull/299
       #
       # logical_path = context.logical_path
-      logical_path = context.instance_variable_get("@logical_path")
+      logical_path = context.instance_variable_get(:@logical_path)
 
       rel = Pathname.new(logical_path).parent
       data.gsub /url\(['"]?([^\s)]+\.[a-z]+)(\?\d+)?['"]?\)/ do |url| 
-        unless URI.parse($1).absolute?
-          new_path = rel.join Pathname.new($1)
-          url = "url(#{new_path})"
-        end
-
-        url
+        next url if URI.parse($1).absolute?
+        new_path = rel.join Pathname.new($1)
+        "url(#{new_path})"
       end 
     end 
   end 
