@@ -8,9 +8,9 @@ Example usage
 
     gem install sprockets-urlrewriter
 
-In rails: 
+In rails, within your own initializer: 
 
-    config.assets.register_preprocessor 'text/css', Sprockets::UrlRewriter
+    Rails.application.assets.register_preprocessor 'text/css', Sprockets::UrlRewriter
 
 In config.ru (if you're using Sinatra)
 
