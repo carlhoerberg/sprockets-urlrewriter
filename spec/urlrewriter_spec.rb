@@ -25,6 +25,22 @@ describe 'UrlRewriter' do
     @css = "body { background-url: image_url('image.png') }"
     assert_equal @css, subject
   end
+
+  it 'ignores case of url' do
+    @css = "body { background-url: URL('image.png') }"
+    assert_equal "body { background-url: url(/assets/css/image.png) }", subject
+  end
+
+  it 'ignores whitespace between : and url' do
+    @css = "body { background-url:       url('image.png') }"
+    assert_equal "body { background-url: url(/assets/css/image.png) }", subject
+  end
+
+  it 'ignores newline between : and url' do
+    @css = "body { background-url:
+url('image.png') }"
+    assert_equal "body { background-url: url(/assets/css/image.png) }", subject
+  end
 end
 
 class FakeContext
