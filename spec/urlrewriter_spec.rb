@@ -15,6 +15,16 @@ describe 'UrlRewriter' do
     @css = "body { background-url: url('http://example.com/bg.jpg?1232') }"
     assert_equal @css, subject
   end
+
+  it 'leaves SASS image-url helpers as is' do
+    @css = "body { background-url: image-url('image.png') }"
+    assert_equal @css, subject
+  end
+
+  it 'leaves Rails image_url helpers as is' do
+    @css = "body { background-url: image_url('image.png') }"
+    assert_equal @css, subject
+  end
 end
 
 class FakeContext
