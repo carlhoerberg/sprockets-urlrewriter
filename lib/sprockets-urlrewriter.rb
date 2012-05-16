@@ -13,10 +13,10 @@ module Sprockets
       logical_path = context.instance_variable_get(:@logical_path)
 
       rel = Pathname.new(logical_path).parent
-      data.gsub /:\s*url\(['"]?([^\s)]+\.[a-z]+)(\?\d+)?['"]?\)/i do |url| 
-        next url if URI.parse($1).absolute?
-        new_path = rel.join Pathname.new($1)
-        ": url(#{new_path}#{$2})"
+      data.gsub /(:|\s)url\(['"]?([^\s)]+\.[a-z]+)(\?\d+)?['"]?\)/i do |url| 
+        next url if URI.parse($2).absolute?
+        new_path = rel.join Pathname.new($2)
+        "#{$1}url(#{new_path}#{$3})"
       end 
     end 
   end 

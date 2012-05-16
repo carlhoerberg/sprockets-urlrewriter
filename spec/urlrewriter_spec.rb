@@ -31,15 +31,26 @@ describe 'UrlRewriter' do
     assert_equal "body { background-url: url(/assets/css/image.png) }", subject
   end
 
-  it 'ignores whitespace between : and url' do
+  it 'allows whitespace between : and url' do
     @css = "body { background-url:       url('image.png') }"
-    assert_equal "body { background-url: url(/assets/css/image.png) }", subject
+    assert_equal "body { background-url:       url(/assets/css/image.png) }", subject
   end
 
-  it 'ignores newline between : and url' do
+  it 'allows newline between colon and url' do
     @css = "body { background-url:
 url('image.png') }"
-    assert_equal "body { background-url: url(/assets/css/image.png) }", subject
+    assert_equal "body { background-url:
+url(/assets/css/image.png) }", subject
+  end
+
+  it 'allows nospace between colon and url' do
+    @css = "body { background-url:url('image.png') }"
+    assert_equal "body { background-url:url(/assets/css/image.png) }", subject
+  end
+
+  it 'allows things between colon and url' do
+    @css = "body { background: no-repeat url('image.png') }"
+    assert_equal "body { background: no-repeat url(/assets/css/image.png) }", subject
   end
 end
 
